@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <h1>Calculator:</h1>
+    </head>
+    <body>
+        <form method = "post">
+            <p><label for="op1">First operand:</label></p>
+            <p><input type = "text" id = "op1" name = "op1" value = {{op1}}></p>
+            <p><label for="opr">Operator:</label></p>
+            <select name="opr" id="opr" value = {{opr}}>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <p><label for="op2">Second operand:</label></p>
+            <p><input type = "text" id = "op2" name = "op2" value = {{op2}}></p>
+            <p><input type = "submit" name = "submit" value = "Submit" ></p>
+            <p><label for="result">Result:{{res}}</label></p>
+            <p><label>View last 5 operations:</label>
+            <input type = "submit" name = "submit" value = "View" ></p>
+            <!-- <output name="result"></output> -->
+            <!-- <p><input type = "text" id = "result" name = "result"></p> -->
+        </form>
+    </body>
+</html>
