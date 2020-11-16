@@ -18,9 +18,12 @@ def Calc():
         Op1 = request.form['op1']
         Op2 = request.form['op2']
         Opr = request.form['opr']
-        print(Op1,Opr,Op2)
-        Res = float(Op1) + float(Op2)
-        #return str(Res)
+        req = {'op1': Op1,'opr' : Opr,'op2' : Op2}
+        jsonReq = json.dumps(req)
+        response = requests.post('http://localhost:2000/', json=jsonReq)
+        jsonResp = response.json()
+        Res = jsonResp['resp']
+        #Res = float(Op1) + float(Op2)
         return render_template('calc.html', op1=Op1, op2=Op2, opr=Opr, res=Res)
     
 
