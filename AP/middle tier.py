@@ -31,8 +31,9 @@ def CalculationLogic():
     opr = req['opr']
     result = Calculate(op1,op2,opr)
     print(result)
-    req = {'op1': op1,'opr' : opr,'op2' : op2}
-    requests.post('http://localhost:3000/', json=request.json)
+    req = str(op1)+str(opr)+str(op2)+'='+str(result)
+    req = json.dumps(req)
+    requests.post('http://localhost:3000/', json=req)
     return str(result)
 
 @app.route('/view', methods=['GET', 'POST'])
