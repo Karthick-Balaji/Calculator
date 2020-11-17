@@ -23,14 +23,24 @@ def Calculate(op1,op2,opr):
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def CalculationLogic():
-    op1 = request.form['op1']
-    op2 = request.form['op2']
-    opr = request.form['opr']
-    resp = Calculate(op1,op2,opr)
-    jsonResp = json.dumps({'resp':resp})
-    return jsonResp
+    req = json.loads(request.json)
+    op1 = req['op1']
+    op2 = req['op2']
+    opr = req['opr']
+    result = Calculate(op1,op2,opr)
+    print(result)
+    req = {'op1': op1,'opr' : opr,'op2' : op2}
+    requests.post('http://localhost:3000/', json=request.json)
+    return str(result)
+
+@app.route('/view', methods=['GET', 'POST'])
+def View():
+    response = requests.post('http://localhost:3000/view')
+    resp = response.text
+    return resp
+    
 
 
 if __name__ == "__main__":
